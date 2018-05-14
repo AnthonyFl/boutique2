@@ -11,6 +11,12 @@ if(!internauteEstConnecteEtEstAdmin()){
 
 $content .= '<a href="?page=gestion_commandes&action=affichage">Affichage des commandes</a><br>';
 
+// ------------ Supression des commandes--------
+
+if(isset($_GET['action']) && $_GET['action'] == 'suppression'){
+    $pdo->exec("DELETE FROM commande WHERE id_commande = $_GET[id_commande]");
+}
+
 //-------------- Affichage des commandes ---------------------
 
 if(isset($_GET['action']) && $_GET['action'] == "affichage"){
@@ -36,7 +42,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage"){
     $content .= '</table><br><hr><br>';
 }
 
-$content .= '<th colspan="6">Le chiffre d\'affaire est de : ' . chiffreaffaire() . ' €</th>';
+// $content .= '<th colspan="6">Le chiffre d\'affaire est de : ' . chiffreaffaire() . ' €</th>';
 
 
 require_once("../inc/haut.inc.php");
